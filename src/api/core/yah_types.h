@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <string.h>
+#include <stdlib.h>
 
 typedef enum 
 {
@@ -12,7 +13,8 @@ typedef enum
     YAH_TYPE_FLOAT,
     YAH_TYPE_VEC4,
     YAH_TYPE_HASH,
-    YAH_TYPE_ARRAY
+    YAH_TYPE_ARRAY,
+    YAH_TYPE_DICT
 }YAH_TYPE;
 
 struct yah_dict;  
@@ -51,6 +53,21 @@ typedef struct yah_dict
     int count;      
     int capacity; // When count reaches capacity the dict will realloc its entries
 }YAH_DICT;
+
+YAH_DICT *yahCreateDict(int initialCapacity);
+YAH_VALUE yahValueFromInt(int i);
+YAH_VALUE yahValueFromFloat(float f);
+YAH_VALUE yahValueFromDict(YAH_DICT *dict);
+YAH_VALUE yahValueFromVec4(const float vec[4]);
+YAH_VALUE yahValueFromHash(uint32_t hashVal);
+YAH_VALUE yahValueFromArray(YAH_VALUE *itemsArray, int itemCount);
+int yahDictSetFloat(YAH_DICT *dict, uint32_t keyHash, float f);
+int yahDictSetInt(YAH_DICT *dict, uint32_t keyHash, int i);
+int yahDictSetDict(YAH_DICT *dict, uint32_t keyHash, YAH_DICT *subDict);
+int yahDictSetVec4(YAH_DICT *dict, uint32_t keyHash, const float vec[4]);
+int yahDictSetHash(YAH_DICT *dict, uint32_t keyHash, uint32_t hashVal);
+int yahDictSetArray(YAH_DICT *dict, uint32_t keyHash, YAH_VALUE *itemsArray, int itemCount);
+int yahDictSet(YAH_DICT *dict, uint32_t keyHash, YAH_VALUE val);
 
 
 #endif
