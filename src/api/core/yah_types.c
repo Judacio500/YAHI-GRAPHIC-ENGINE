@@ -106,9 +106,9 @@ int yahDictSet(YAH_DICT *dict, uint32_t keyHash, YAH_VALUE val)
 
     for (int i = 0; i < dict->count; i++) 
     {
-        if (dict->entries[i].keyHash == keyHash) 
+        if (dict->entries[i].key == keyHash) 
         {
-            dict->entries[i].val = val; 
+            dict->entries[i].value = val; 
             return 0;
         }
     }
@@ -124,8 +124,8 @@ int yahDictSet(YAH_DICT *dict, uint32_t keyHash, YAH_VALUE val)
         dict->capacity = newCap;
     }
 
-    dict->entries[dict->count].keyHash = keyHash;
-    dict->entries[dict->count].val = val;
+    dict->entries[dict->count].key = keyHash;
+    dict->entries[dict->count].value = val;
     dict->count++;
 
     return 0;
