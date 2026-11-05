@@ -134,3 +134,55 @@ int yahDictSet(YAH_DICT *dict, uint32_t keyHash, YAH_VALUE val)
 
     return 0;
 }
+
+YAH_VALUE *yahDictGet(YAH_DICT *dict, uint32_t keyHash)
+{
+    if(!dict) 
+        return NULL;
+    for(int i = 0; i < dict->count; i++)
+    {
+        if(dict->entries[i].key == keyHash)
+            return &dict->entries[i].value;
+    }
+    return NULL;
+}
+
+float *yahDictGetFloat(YAH_DICT *dict, uint32_t keyHash)
+{
+    YAH_VALUE *val = yahDictGet(dict, keyHash);
+    if(val && val->type == YAH_TYPE_FLOAT)
+        return &val->data.f;
+    return NULL;
+}
+
+int *yahDictGetInt(YAH_DICT *dict, uint32_t keyHash)
+{
+    YAH_VALUE *val = yahDictGet(dict, keyHash);
+    if(val && val->type == YAH_TYPE_INT)
+        return &val->data.i;
+    return NULL;
+}
+
+float *yahDictGetVec4(YAH_DICT *dict, uint32_t keyHash)
+{
+    YAH_VALUE *val = yahDictGet(dict, keyHash);
+    if(val && val->type == YAH_TYPE_VEC4)
+        return val->data.vec;
+    return NULL;
+}
+
+uint32_t *yahDictGetHash(YAH_DICT *dict, uint32_t keyHash)
+{
+    YAH_VALUE *val = yahDictGet(dict, keyHash);
+    if(val && val->type == YAH_TYPE_HASH)
+        return &val->data.hash;
+    return NULL;
+}
+
+YAH_DICT *yahDictGetDict(YAH_DICT *dict, uint32_t keyHash)
+{
+    YAH_VALUE *val = yahDictGet(dict, keyHash);
+    if(val && val->type == YAH_TYPE_DICT)
+        return val->data.dict;
+    return NULL;
+}

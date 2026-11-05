@@ -63,6 +63,11 @@ int yahDictSetVec4(YAH_DICT *dict, uint32_t keyHash, const float vec[4]);
 int yahDictSetHash(YAH_DICT *dict, uint32_t keyHash, uint32_t hashVal);
 int yahDictSetArray(YAH_DICT *dict, uint32_t keyHash, YAH_VALUE *itemsArray, int itemCount);
 int yahDictSet(YAH_DICT *dict, uint32_t keyHash, YAH_VALUE val);
-
+YAH_VALUE *yahDictGet(YAH_DICT *dict, uint32_t keyHash);
+float *yahDictGetFloat(YAH_DICT *dict, uint32_t keyHash);
+int *yahDictGetInt(YAH_DICT *dict, uint32_t keyHash);
+float *yahDictGetVec4(YAH_DICT *dict, uint32_t keyHash);
+uint32_t *yahDictGetHash(YAH_DICT *dict, uint32_t keyHash);
+YAH_DICT *yahDictGetDict(YAH_DICT *dict, uint32_t keyHash);
 
 #endif

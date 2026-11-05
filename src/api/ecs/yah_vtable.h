@@ -23,5 +23,7 @@ YAH_VTABLE *yahCreateVTable(int capacity);
 int yahVTableRegister(YAH_VTABLE *vt, const char *actionName, YAH_ACTION_FN fn);
 void yahVTableDispatch(YAH_VTABLE *vt, uint32_t actionHash, YAH_DICT *entity, float dt);
 void yahFreeVTable(YAH_VTABLE *vt);
+void yahVTableDispatchEntity(YAH_VTABLE *vt, YAH_DICT *entity, float dt);
+void yahVTableDispatchWorld(YAH_VTABLE *vt, YAH_DICT *world, float dt);
 
 #endif
