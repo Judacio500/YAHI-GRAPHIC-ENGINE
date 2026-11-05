@@ -14,7 +14,7 @@ typedef enum
     YAH_TYPE_ARRAY
 }YAH_TYPE;
 
-struct yah_dict; 
+struct yah_dict;  
 
 // Since the dictionary is "interpreted"
 // the value to save must have al the interpretations of said value
@@ -44,6 +44,12 @@ typedef struct yah_entry
     YAH_VALUE value;  // we are saving one of the types declared at the union plus the cast type
 }
 
+typedef struct yah_dict
+{
+    YAH_ENTRY *entries;
+    int count;
+    int capacity;
+}
 
 
 #endif
