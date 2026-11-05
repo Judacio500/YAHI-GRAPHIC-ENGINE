@@ -38,12 +38,10 @@ static char *yahReadFile(const char *path)
     if (!file) 
         return NULL;
 
-    // Saltamos al final del archivo para obtener su tamaño en bytes
     fseek(file, 0, SEEK_END);
     long length = ftell(file);
-    fseek(file, 0, SEEK_SET); // Regresamos el cursor al inicio
+    fseek(file, 0, SEEK_SET); 
 
-    // Reservamos memoria exacta (+1 para el terminador nulo de string)
     char *buffer = (char *)malloc(length + 1);
     if (!buffer) 
     {
@@ -51,9 +49,8 @@ static char *yahReadFile(const char *path)
         return NULL;
     }
 
-    // Leemos el archivo entero directo a la RAM (literalmente un bufferedReader de java o bueno, mas o menos)
     fread(buffer, 1, length, file);
-    buffer[length] = '\0'; // Sellamos el arreglo para que sea un string válido en C    
+    buffer[length] = '\0';
 
     fclose(file);
     return buffer;
@@ -88,7 +85,7 @@ static JSON_TOKEN nextToken(LEXER *lex)
 {   
     JSON_TOKEN token;
 
-    skipWhiteSpace(lex);
+    skipWhitespace(lex);
 
     if(!lex)
     {
@@ -241,9 +238,9 @@ static YAH_DICT *parseDict(LEXER *lex)
             printf("ERROR AT LINE %d: EXPECTED ',' GOT '%.*s'\n", lex.line, t.length, t.start);
             return NULL;
         }
-
-        return dict;
     }
+
+    return dict;
 }
 
 static YAH_VALUE parseValue(LEXER *lex)
@@ -330,10 +327,10 @@ static YAH_VALUE parseArray(LEXER *lex)
         YAH_VALUE vecVal;
         vecVal.type = YAH_TYPE_VEC4;
         
-        vecVal.data.vec4[0] = (stackBuffer[0].type == YAH_TYPE_FLOAT) ? stackBuffer[0].data.f : (float)stackBuffer[0].data.i;
-        vecVal.data.vec4[1] = (stackBuffer[1].type == YAH_TYPE_FLOAT) ? stackBuffer[1].data.f : (float)stackBuffer[1].data.i;
-        vecVal.data.vec4[2] = (stackBuffer[2].type == YAH_TYPE_FLOAT) ? stackBuffer[2].data.f : (float)stackBuffer[2].data.i;
-        vecVal.data.vec4[3] = (stackBuffer[3].type == YAH_TYPE_FLOAT) ? stackBuffer[3].data.f : (float)stackBuffer[3].data.i;
+        vecVal.data.vec[0] = (stackBuffer[0].type == YAH_TYPE_FLOAT) ? stackBuffer[0].data.f : (float)stackBuffer[0].data.i;
+        vecVal.data.vec[1] = (stackBuffer[1].type == YAH_TYPE_FLOAT) ? stackBuffer[1].data.f : (float)stackBuffer[1].data.i;
+        vecVal.data.vec[2] = (stackBuffer[2].type == YAH_TYPE_FLOAT) ? stackBuffer[2].data.f : (float)stackBuffer[2].data.i;
+        vecVal.data.vec[3] = (stackBuffer[3].type == YAH_TYPE_FLOAT) ? stackBuffer[3].data.f : (float)stackBuffer[3].data.i;
         
         return vecVal;
     }

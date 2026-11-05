@@ -1,4 +1,7 @@
 #include "yah_hash.h"
+#include <stdint.h>
+#include <stddef.h>
+
 
 uint32_t yahHashString(const char *str)
 {

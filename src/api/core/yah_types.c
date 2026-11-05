@@ -1,4 +1,8 @@
 #include "yah_types.h"
+#include <stdint.h>
+#include <stddef.h>
+#include <string.h>
+#include <stdlib.h>
 
 YAH_DICT *yahCreateDict(int initialCapacity)
 {

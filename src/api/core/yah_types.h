@@ -1,11 +1,6 @@
 #ifndef YAH_TYPES_H
 #define YAH_TYPES_H
 
-#include <stdint.h>
-#include <stddef.h>
-#include <string.h>
-#include <stdlib.h>
-
 typedef enum 
 {
     YAH_TYPE_NIL = 0,
