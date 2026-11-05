@@ -9,7 +9,7 @@ YAH_DICT *yahCreateDict(int initialCapacity)
 
     dict->capacity = (initialCapacity <= 0) ? 10 : initialCapacity;
     dict->count = 0;
-    dict->entries = (YAH_ENTRY*)malloc(sizeof(YAH_ENTRY)*dict->capacity);(
+    dict->entries = (YAH_ENTRY*)malloc(sizeof(YAH_ENTRY)*dict->capacity);
 
     if(!dict->entries)
     {

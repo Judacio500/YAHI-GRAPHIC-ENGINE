@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <string.h>
 
 typedef enum 
 {
@@ -42,14 +43,14 @@ typedef struct yah_entry
 {
     uint32_t key; 
     YAH_VALUE value;  // we are saving one of the types declared at the union plus the cast type
-}
+}YAH_ENTRY;
 
 typedef struct yah_dict
 {
     YAH_ENTRY *entries;
-    int count;
-    int capacity;
-}
+    int count;      
+    int capacity; // When count reaches capacity the dict will realloc its entries
+}YAH_DICT;
 
 
 #endif
